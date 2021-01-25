@@ -1,0 +1,14 @@
+{% load sass_tags %}
+<ul>
+    {% for post in latest_posts %}
+    <li>
+        <a href="{{ post.get_absolute_url }}" target="_blank">
+            <img src="{% sass_src 'images/index_con02.jpg' %}" />
+        </a>
+        <div class="detail_random_con">
+            <span><i class="zi zi_clock"></i> {{ post.publish|date:"Y-m-d"}}</span>
+            <p>{{ post.title }}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+
+{#{% block title %}{{ title }} | {{ site_title|default:_('Zoomla!CMS site admin') }}{% endblock %}#}
+{% block title %}{{ title }} | Zoomla!逐浪CMS Python版后台管理系统 {% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}"><i class="zi zi_tmZoomla"></i> Zoomla!逐浪CMS <small>python版</small></a></h1>
+<style>
+h1 i{font-size: 2rem;}
+h1 small{font-size: .98rem;opacity: .6;}
+.login{display: flex;align-items: center; height:100vh !important;}
+</style>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

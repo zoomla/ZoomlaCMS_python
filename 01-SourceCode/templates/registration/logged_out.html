@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}注销登录{% endblock %}
+{% block content %}
+    <div class="exitlogin">
+        <h1>退出登录成功</h1>
+        <p>已退出登入.<a href="{% url "login" %}">再次登录</a> </p>
+        <p><a href="/">返回首页</a> </p>
+    </div>
+{% endblock %}

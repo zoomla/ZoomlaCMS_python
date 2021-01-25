@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}会员注册{% endblock %}
+{% block content %}
+    <div class="registered">
+        <div class="registered_div">
+          <h1>用户注册 <span>已有账号？点此<a href="{% url "login" %}">登录</a></span></h1>
+          <form action="." method="post">
+            {{ user_form.as_p }}
+            {% csrf_token %}
+{#            <input type="submit" value="注册">#}
+              <div class="d-grid d-block">
+                <button class="btn btn-outline-primary" type="submit">注册</button>
+                </div>
+          </form>
+        </div>
+    </div>
+{% endblock %}

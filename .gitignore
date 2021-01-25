@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/00-本地环境
+/.svn
+/README_inner.md
+/Typecho博客完美实现回复可见-优客-blog.png
+/参照UI@友链-优客-blog.png
+/环境清单.png

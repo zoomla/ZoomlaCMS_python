@@ -1,0 +1,136 @@
+{% extends "blog/base.html" %}
+{% load sass_tags %}
+{% load blog_tags %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block banner %}
+    <div class="blog_banner_div_con">
+        <p>{{ post.title }}</p>
+        <span><i class="zi zi_clock"></i> {{ post.publish|date:"Y-m-d"}}</span>
+        <span><i class="zi zi_user"></i> {{ post.author }}</span>
+        <span><i class="zi zi_comment"></i>{% with comments.count as total_comments %} {{ total_comments }}{% endwith %}</span>
+        <span><a href="{% url "blog:post_share" post.id %}"><i class="zi zi_sharealt"></i></a></span>
+    </div>{% endblock %}
+{% block content %}
+    <div class="detail">
+    <div class="container-xl mt-4">
+    <div class="row">
+    <div class="col-md-9 col-12">
+        <div class="detail_con">
+            <ul class="breadcrumb">
+                <li><a href="/">首页</a></li>
+                <li><a href="/">Python</a></li>
+                <li>正文</li>
+            </ul>
+            <hr>
+{#            <h1>{{ post.title }}</h1>#}
+{#            <p class="date">#}
+{#                <i class="zi zi_clock"></i> {{ post.publish|date:"Y-m-d"}} 作者：{{ post.author }}#}
+{#            </p>#}
+         <small>Markdown解析：</small> {{ post.body|markdown }}
+            <small>直接输出：</small> {{ post.body|linebreaks }}
+            {{ post.body|safe }}
+        </div>
+        <div class="detail_comments">
+            <div class="detail_comments_leave">
+                {% for comment in comments %}
+                    <div class="comment">
+                    <p class="info">
+                        {{ forloop.counter }} 楼{{ comment.name }}
+                        {{ comment.created|date:"Y-m-d H:i:s"  }}
+                    </p>
+                    {{ comment.body|linebreaks }}
+                    </div>
+                    {% empty %}
+                    <p>这里评论空空如也。 </p>
+                {% endfor %}
+            </div>
+            <div class="detail_comments_liuyan">
+                {% if new_comment %}
+                <h3>你的评论成功发表</h3>
+                {% else %}
+                <span>发表评论:</span>
+                <form action="." method="post">
+                {{ comment_form.as_p }}
+                {% csrf_token %}
+                <p><input class="btn btn-outline-info" type="submit" value="发表评论" /> </p>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-12">
+        <div class="detail_user">
+            <div class="detail_user_top">
+                <div class="detail_user_top_img"><img src="{% sass_src 'images/user_img.jpg' %}" /></div>
+            </div>
+            <div class="detail_user_cen">yi夏</div>
+            <div class="detail_user_bot">
+                <div class="detail_user_bot1"><span>{% total_posts %}</span><p>文章</p></div>
+                <div class="detail_user_bot1"><span>12</span><p>评论</p></div>
+                <div class="detail_user_bot1"><span>40</span><p>标签</p></div>
+            </div>
+        </div>
+        <div class="detail_huifu">
+            <span class="detail_huifu_title">最新回复 <i class="zi zi_reply" zico="回复黑"></i></span>
+            <ul>
+                <li>
+                    <a href="">
+                    <img src="{% sass_src 'images/user_img.jpg' %}" />
+                    <div class="detail_huifu_detail">
+                        <div class="detail_huifu_detail_on"><div class="detail_huifu_detail_on1">李大侠</div><div class="detail_huifu_detail_on1">2021-01-01</div></div>
+                        <div class="detail_huifu_detail_the">文章写的很棒，收藏了</div>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                    <img src="{% sass_src 'images/user_img.jpg' %}" />
+                    <div class="detail_huifu_detail">
+                        <div class="detail_huifu_detail_on"><div class="detail_huifu_detail_on1">王王王</div><div class="detail_huifu_detail_on1">2021-01-01</div></div>
+                        <div class="detail_huifu_detail_the">简单明了,nice</div>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                    <img src="{% sass_src 'images/index_con02.jpg' %}" />
+                    <div class="detail_huifu_detail">
+                        <div class="detail_huifu_detail_on"><div class="detail_huifu_detail_on1">李大侠</div><div class="detail_huifu_detail_on1">2021-01-01</div></div>
+                        <div class="detail_huifu_detail_the">文章写的很棒，收藏了</div>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                    <img src="{% sass_src 'images/user_img.jpg' %}" />
+                    <div class="detail_huifu_detail">
+                        <div class="detail_huifu_detail_on"><div class="detail_huifu_detail_on1">yixia</div><div class="detail_huifu_detail_on1">2021-01-01</div></div>
+                        <div class="detail_huifu_detail_the">文章写的很棒，收藏了，收藏了，收藏了，收藏了，收藏了，收藏了</div>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="detail_random">
+            <span class="detail_random_title">随便看看 <i class="zi zi_bookopen" zico="看书"></i></span>
+            {% show_latest_random 3 %}
+        </div>
+    </div>
+{#        <a href="{% url "blog:post_share" post.id %}">分享</a>#}
+        {#    评论统计代码：#}
+
+{#            相拟性帖子文章#}
+{#            <hr>#}
+{#            <h2>相关帖子</h2>#}
+{#            {% for post in similar_posts %}#}
+{#            <p>#}
+{#                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>#}
+{#            </p>#}
+{#            {% empty %}#}
+{#            无相似文章。#}
+{#            {% endfor %}#}
+    </div>
+    </div>
+    </div>
+{% endblock %}

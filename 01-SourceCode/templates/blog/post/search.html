@@ -1,0 +1,44 @@
+{% extends "blog/base.html" %}
+{% block title %}搜索{% endblock %}
+{% block banner %}<p>从blog中检索...</p>{% endblock %}
+{% block content %}
+    <div class="container-xl search">
+        <div class="search_results">
+            {% if query %}
+            <h1>关于“{{ query }}"的搜索结果如下：</h1>
+            <h3>
+                {% with results.count as total_results %}
+                找到了 <span class="numcolor"> {{ total_results }}</span> 条结果 {# {{ total_results|pluralize }} #}
+                {% endwith %}
+            </h3>
+                <ul>
+                    {% for post in results %}
+                        <li>
+                            <a href="{{ post.get_absolute_url }}">
+                                <p class="search_list_title">{{ post.title }}<span class="search_list_deta"><i class="zi zi_clock" zico="时钟"></i> {{ post.publish|date:"Y-m-d" }}</span></p>
+                                <p class="search_list_con">{{ post.body|truncatewords:7 }}</p>
+                            </a>
+                        </li>
+
+{#                    <h4>#}
+{#                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>#}
+{#                    <span class="search_list_deta"></span>{{ post.publish|date:"Y-m-d" }}#}
+{#                    </h4>#}
+{#                        {{ post.body|truncatewords:10 }}#}
+                    {% empty %}
+                        <p>没有任何结果</p>
+                        {% endfor %}
+                </ul>
+                <p class="zsearch">对结果不满意？<a href="{% url "blog:post_search" %}">再搜索</a></p>
+                    {% else %}
+        </div>
+        <div class="search_input">
+            <form action="." method="get">
+                {{ form.as_p }}
+    {#            <input type="submit"  value="搜索">#}
+            <button class="search_button" type="submit"><i class="zi zi_search"></i></button>
+            </form>
+        </div>
+        {%  endif %}
+    </div>
+{% endblock %}

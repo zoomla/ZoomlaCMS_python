@@ -1,0 +1,131 @@
+{% load sass_tags %}
+{% load blog_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{% endblock %}</title>
+   <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/zico.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{% sass_src 'style.scss' %}" rel="stylesheet" type="text/css" />
+{#<link href="{% static "css/blog.css" %}" rel="stylesheet" />#}
+</head>
+<body class="base">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top inav" id="inav">
+<div class="container-fluid">
+<a class="navbar-brand index_logo" href="/"><img src="{% sass_src 'images/logo.svg' %}" /><small>python版</small></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse index_ul" id="navbarNav">
+  <ul class="navbar-nav">
+    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">首页</a></li>
+    <li class="nav-item"><a class="nav-link" href="/blog">文章列表</a></li>
+  </ul>
+    <ul class="index_ul_r navbar-nav">
+        <li><a href="/account/"><i class="zi zi_user"></i></a></li>
+        <li><a href="/account/register/">注册</a></li>
+{#        <li><a href="{% url "dashboard" %}">注册</a></li>#}
+        <li><span class="user">
+            {% if request.user.is_authenticated %}
+                {{ request.user.first_name }}
+            <a href="{% url "logout" %}">退出</a>
+            {% else %}
+            <a href="{% url "login" %}">登录</a>
+            {% endif %}
+        </span></li>
+        <li><a href="{% url "blog:post_search" %}"><i class="zi zi_search"></i></a></li>
+    </ul>
+</div>
+</div>
+</nav>
+{#导航 end#}
+
+<div class="blog_banner">
+    <div class="blog_banner_div">
+        {% block banner %}
+        {% endblock %}
+    </div>
+</div>
+
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<footer>
+    <div class="container-xl">
+        <div class="footer_ul">
+            <ul>
+                <li>开始</li>
+                <li><a href="https://www.z01.com/about">关于项目</a></li>
+                <li><a href="https://www.z01.com/Item/1397.aspx">产品理念</a></li>
+                <li><a href="https://www.z01.com/Item/1356.aspx">有何不同</a></li>
+                <li><a href="https://www.z01.com/Item/508.aspx">检索方法</a></li>
+                <li><a href="https://www.z01.com/Item/1350.aspx">区位标准</a></li>
+            </ul>
+            <ul>
+                <li>前瞻研发</li>
+                <li><a href="http://pano.z01.com" target="_blank">VR与AR</a></li>
+                <li><a href="https://www.z01.com/corp/video/1839.shtml" target="_blank">体感研发</a></li>
+                <li><a href="https://www.z01.com/pub/2986.shtml" target="_blank">智能硬件</a></li>
+                <li><a href="https://www.z01.com/pub/2426.shtml" target="_blank">微信开发</a></li>
+                <li><a href="https://www.z01.com/updata/881.shtml" target="_blank">三维全景</a></li>
+                <li><a href="https://www.z01.com/m/" target="_blank">移动开发</a></li>
+            </ul>
+            <ul>
+                <li>开放平台</li>
+                <li><a href="https://www.z01.com/down/3504.shtml" target="_blank">逐浪云管家(FileZilla Server智能助手）</a></li>
+                <li><a href="http://help.z01.com/HelpLabel.aspx" target="_blnak">标签助手</a></li>
+                <li><a href="//ico.z01.com" target="_blnak">zico矢量图标</a></li>
+                <li><a href="http://code.z01.com/v4/" target="_blank">BootStrap中文站</a></li>
+                <li><a href="https://www.z01.com/learn/1246.shtml" target="_blank">云技术白皮书</a></li>
+                <li><a href="https://www.z01.com/Article/news/526.shtml" target="_blank">永久免费声明</a></li>
+                <li><a href="//tool.73ic.com/" target="_blank">站长工具</a></li>
+            </ul>
+            <ul>
+                <li>关于我们</li>
+                <li><a href="https://www.z01.com/y10/" target="_blank">10年华诞</a></li>
+                <li><a href="https://www.z01.com/corp/" target="_blank">关于公司</a></li>
+                <li><a href="https://www.z01.com/photo/ltd/" target="_blank">参观公司</a></li>
+                <li><a href="https://www.z01.com/corp/music" target="_blank">企业歌曲</a></li>
+                <li><a href="https://www.z01.com/corp/video" target="_blank">视频中心</a></li>
+                <li><a href="https://www.z01.com/corp/history/" target="_blank">发展历程</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-xl">
+        <p>7×24小时服务热线 021-50391046 技术支持：<a href="tel:13177777714">13177777714</a></p>
+        <p>Copyright ©2003-2021 逐浪软件z01.com版权所有 All rights reserved</p>
+        <p>经营许可证号:工商3601002021063 <a href="http://beian.miit.gov.cn" target="_blank">沪ICP备09077823号</a> <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011502000316"><img src="/uploadfiles/ga.png" alt="">沪公网安备31011502000316号</a></p>
+        <p>本网站基于&reg;Zoomla!逐浪CMS Python版开发</p>
+    </div>
+</footer>
+
+
+{#<div id="siderbar">#}
+{#    <p>逐浪CMS发哥的博客列表，已经创作了{% total_posts %}篇日志。</p>#}
+{#    <p><a href="{% url "blog:post_feed" %}">点此获取RSS阅读列表</a></p>#}
+{#    <h3>最近更新：</h3>#}
+    {#  显示四条最近更新#}
+{#    {% show_latest_posts 4 %}#}
+{##}
+    {#  最近被评论的#}
+{#    <h3>最近评论的帖子</h3>#}
+{#    {% get_most_commented_posts as most_commented_posts %}#}
+{#    <ul>#}
+{#        {% for post in most_commented_posts %}#}
+{#        <li>#}
+{#            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>#}
+{#        </li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#</div>#}
+<script>
+
+</script>
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

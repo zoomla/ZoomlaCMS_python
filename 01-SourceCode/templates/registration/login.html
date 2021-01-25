@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}登录{% endblock %}
+{% block content %}
+
+<div class="login">
+    <div class="login_form">
+        <h1><i class="zi zi_child"></i> 进入会员中心</h1>
+        {% if form.errors %}
+        <p>你的用户名和密码不正确，请重试确认。</p>
+        {% endif %}
+        <form action="{% url 'login' %}" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+{#            <a href="/account/registration/register">注册</a>#}
+        <div class="d-grid gap-2">
+            <button class="btn btn-info" type="submit">登录</button>
+            <a class="btn btn-outline-info" href="/account/register/">注册</a>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

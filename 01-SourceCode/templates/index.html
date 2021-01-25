@@ -1,0 +1,370 @@
+{% load sass_tags %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Zoomla!逐浪CMS - python版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{#    <link href="/static/global.css?Version=20190104" rel="stylesheet"/>#}
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/zico.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{% sass_src 'style.scss' %}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+</head>
+<body class="index_body">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top inav" id="inav">
+<div class="container-fluid">
+<a class="navbar-brand index_logo" href="/"><img src="{% sass_src 'images/logo.svg' %}" /><small>python版</small></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse index_ul" id="navbarNav">
+  <ul class="navbar-nav">
+    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">首页</a></li>
+    <li class="nav-item"><a class="nav-link" href="/blog">文章列表</a></li>
+  </ul>
+    <ul class="index_ul_r navbar-nav">
+        <li><a href="/account/"><i class="zi zi_user"></i></a></li>
+        <li><a href="/account/register/">注册</a></li>
+{#        <li><a href="{% url "dashboard" %}">注册</a></li>#}
+        <li><span class="user">
+            {% if request.user.is_authenticated %}
+                {{ request.user.first_name }}
+            <a href="{% url "logout" %}">退出</a>
+            {% else %}
+            <a href="{% url "login" %}">登录</a>
+            {% endif %}
+        </span></li>
+        <li><a href="{% url "blog:post_search" %}"><i class="zi zi_search"></i></a></li>
+    </ul>
+</div>
+</div>
+</nav>
+{#导航 end#}
+
+<div class="index_banner">
+<p>领先的门户与生产力平台开发软件</p>
+</div>
+{#banner end#}
+
+<div class="container-xl">
+    <div class="index_con">
+        <div class="index_con1_product">
+            <h1>门户产品</h1>
+            <div class="row">
+                <div class="col-md-4 col-6">
+                    <div class="index_con1_product_list"><a href=""><img src="{% sass_src 'images/home_product01.png' %}" alt="123"  /></a><p>Zoomla®!逐浪CMS个人版</p></div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="index_con1_product_list"><a href=""><img src="{% sass_src 'images/home_product02.png' %}" alt="123"  /></a><p>Zoomla®!逐浪CMS企业版</p></div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="index_con1_product_list"><a href=""><img src="{% sass_src 'images/home_product03.png' %}" alt="123"  /></a><p>Zoomla®!逐浪CMS教育版</p></div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="index_con1_product_list"><a href=""><img src="{% sass_src 'images/home_product04.png' %}" alt="123"  /></a><p>Zoomla®!逐浪CMS政府版</p></div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="index_con1_product_list"><a href=""><img src="{% sass_src 'images/home_product04.png' %}" alt="123"  /></a><p>Zoomla®!逐浪CMS个人版</p></div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="index_con1_product_list"><a href=""><img src="{% sass_src 'images/home_product05.png' %}" alt="123"  /></a><p>Zoomla®!逐浪CMS个人版</p></div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="index_con1_product_list"><a href=""><img src="{% sass_src 'images/home_product05.png' %}" alt="123"  /></a><p>Zoomla®!逐浪CMS个人版</p></div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="index_con1_product_list"><a href=""><img src="{% sass_src 'images/home_product04.png' %}" alt="123"  /></a><p>Zoomla®!逐浪CMS政府版</p></div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="index_con1_product_list"><a href=""><img src="{% sass_src 'images/home_product01.png' %}" alt="123" /></a><p>Zoomla®!逐浪CMS个人版</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="index_con1_news">
+            <h1>动态</h1>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="index_con1_news_list">
+                        <a href=""><img src="{% sass_src 'images/index_con01.jpg' %}" />
+                        <div class="index_con1_news_list_title">
+                            <p>最开源-安全可靠国产系统背景下的应有.NET Core的一席之地</p>
+                            <span>相比java，.netcore/.net5+、mono才是最安全可靠的选择。一是它们是最最开放的MIT/Apache2协议开源...</span>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="index_con1_news_list">
+                        <a href=""><img src="{% sass_src 'images/index_con02.jpg' %}" />
+                        <div class="index_con1_news_list_title">
+                            <p>最开源-安全可靠国产系统背景下的应有.NET Core的一席之地</p>
+                            <span>相比java，.netcore/.net5+、mono才是最安全可靠的选择。一是它们是最最开放的MIT/Apache2协议开源...</span>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="index_con1_news_list">
+                        <a href=""><img src="{% sass_src 'images/index_con02.jpg' %}" />
+                        <div class="index_con1_news_list_title">
+                            <p>最开源-安全可靠国产系统背景下的应有.NET Core的一席之地</p>
+                            <span>相比java，.netcore/.net5+、mono才是最安全可靠的选择。一是它们是最最开放的MIT/Apache2协议开源...</span>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="index_con1_news_list">
+                        <a href=""><img src="{% sass_src 'images/index_con03.jpg' %}" />
+                        <div class="index_con1_news_list_title">
+                            <p>最开源-安全可靠国产系统背景下的应有.NET Core的一席之地</p>
+                            <span>相比java，.netcore/.net5+、mono才是最安全可靠的选择。一是它们是最最开放的MIT/Apache2协议开源...</span>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="index_con1_news_list">
+                        <a href=""><img src="{% sass_src 'images/index_con02.jpg' %}" />
+                        <div class="index_con1_news_list_title">
+                            <p>最开源-安全可靠国产系统背景下的应有.NET Core的一席之地</p>
+                            <span>相比java，.netcore/.net5+、mono才是最安全可靠的选择。一是它们是最最开放的MIT/Apache2协议开源...</span>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="index_con1_news_list">
+                        <a href=""><img src="{% sass_src 'images/index_con01.jpg' %}" />
+                        <div class="index_con1_news_list_title">
+                            <p>最开源-安全可靠国产系统背景下的应有.NET Core的一席之地</p>
+                            <span>相比java，.netcore/.net5+、mono才是最安全可靠的选择。一是它们是最最开放的MIT/Apache2协议开源...</span>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="index_con2_more">
+                    <a href="/Article/news/" target="_blank" class="index_con2_more">查看更多<i class="zi zi_forRight"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{#门户产品、动态 end#}
+
+<div class="container-xl">
+    <div class="index_con">
+        <div class="index_con2_plan">
+        <h1>软件中心</h1>
+        <div class="index_con2_plan_list">
+            <a href="">
+                <img src="{% sass_src 'images/index_con01.jpg' %}" />
+                <div class="index_con2_plan_list_title">
+                    <h2>Zoomla!逐浪CMS v8</h2>
+                    <span>主力版本</span><span>最新发布</span><span>基于.net core</span> <span>动态更新</span><span>开源开放</span>
+                    <p>相比java，.netcore/.net5+、mono才是最安全可靠的选择。一是它们是最最开放的MIT/Apache2协议开源可靠的选择。一是它们是最最开放的MIT/Apache2协议可靠的选择。一是它们是最最开放的MIT/Apache2协议...</p>
+                </div>
+            </a>
+        </div>
+        <div class="index_con2_plan_list">
+            <a href="">
+                <img src="{% sass_src 'images/index_con03.jpg' %}" />
+                <div class="index_con2_plan_list_title">
+                    <h2>Zoomla!逐浪CMS2 by mvc</h2>
+                    <span>自由引擎</span><span>经典应用</span><span>强大兼容性</span> <span>扩展方便</span>
+                    <p>基于.net 4.7框架的经典CMS产品，其开放最近版本为Zoomla!逐浪CMS2 x3.9.5， 同时面向商业用户和政企客户提供订制、授权与更新，点击免费下载。...</p>
+                </div>
+            </a>
+        </div>
+        <div class="index_con2_plan_list">
+            <a href="">
+                <img src="{% sass_src 'images/index_con02.jpg' %}" />
+                <div class="index_con2_plan_list_title">
+                    <h2>Zoomla!逐浪CMS升级与环境配置工具</h2>
+                    <span>升级工具</span><span>文档下载</span><span>万能数据转移工具</span>
+                    <p>提供丰富便利的升级工具，您可以轻松的从任何版本的Zoomla!逐浪CMS升级到最新版本，从而拥抱最优秀的应用体验，这一切都是如同我们官方所昭示的：开放、自由、高可再开发性。使用时请认真查看文档和操作说明，或在官方客服指导下操作。...</p>
+                </div>
+            </a>
+        </div>
+        <div class="index_con2_plan_list">
+            <a href="">
+                <img src="{% sass_src 'images/index_con03.jpg' %}" />
+                <div class="index_con2_plan_list_title">
+                    <h2>快发组件</h2>
+                    <span>编辑利器</span><span>与浏览器完美结合</span><span>快速发布</span> <span>CMS助手</span>
+                    <p>与Chrome现代浏览器(包括360、搜狗、QQ、傲游、猎豹、UCweb等主流浏览器）完美结合，高效的将文章采集、发布到逐浪CMS后台，媒体门户站点编辑操利器，比普通发布模式快四倍，高效采集发布信息（在chrome-设置-扩展中，开启“开发者模式”，将应用拖入进浏览器窗口，即可完成安装,欢迎下载使用）。...</p>
+                </div>
+            </a>
+        </div>
+        <div class="index_con2_plan_list">
+            <a href="">
+                <img src="{% sass_src 'images/index_con01.jpg' %}" />
+                <div class="index_con2_plan_list_title">
+                    <h2>Teams360-覆盖全网的移动平台</h2>
+                    <span>安卓下载</span><span>IOS下载</span>
+                    <p>面向移动互联网、面向企业管理、全面接入HTML5技术与智能物联网技术，轻松建立移动办公平台并可进行二次开发，在手机客户端上生成新APP客户端，并可接入微信、与网站连为一体，使数据请求同步随心所俗的增加企业级应用部署节点，全新的企业级移动新技术，支持安卓、IOS应用...</p>
+                </div>
+            </a>
+        </div>
+        <div class="index_con2_plan_list">
+            <a href="">
+                <img src="{% sass_src 'images/index_con02.jpg' %}" />
+                <div class="index_con2_plan_list_title">
+                    <h2>一特网社会化云办公平台</h2>
+                    <span>采购管理</span><span>销售管理</span><span>仓储管理</span>
+                    <p>逐浪软件旗下的在线SAAS办公和企业2.0平台，沟通、协作、分享、知识积累，帮助激发员工的潜能和提升工作成效，支持线上部署与私有化部署两种服务形态，将传统的OA升级为办事、事务、线上日程，并结合HTML5技术，非常方便的接入传统的ERP...</p>
+                </div>
+            </a>
+        </div>
+        <div class="index_con2_plan_list">
+            <a href="base.html">
+                <img src="{% sass_src 'images/index_con03.jpg' %}" />
+                <div class="index_con2_plan_list_title">
+                    <h2>逐浪MR混合现实研发门户</h2>
+                    <span>VR试戴</span><span>视频会议</span><span>体感研发</span> <span>三维全景研发</span><span>进入pano.z01.com门户</span>
+                    <p>面向生产力研发，逐浪团队具备深厚的技术实力，实现基于Kinect 、 Hololens以及诸多主流硬件接合的混合现实开发，通过MR混合现实、AR、VR等 技术，服务于产业客户。...</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>
+</div>
+{#软件中心 end#}
+
+<div class="container-xl">
+    <div class="index_con3_list">
+        <a href="">
+            <img src="{% sass_src 'images/index_con01.jpg' %}" alt=".NET Core"/>
+            <div class="index_con3_list_div">
+                <div class="index_con3_list_div1">
+                    <p>最开源-安全可靠国产系统背景下的应有.NET Core的一席之地</p>
+                    <span><i class="zi zi_clock"></i>2021-01-18</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="container-xl">
+    <div class="index_con4_list">
+        <a href="">
+            <div class="index_con4_list_img">
+                <img src="{% sass_src 'images/index_con_list1.jpg' %}" alt=".NET Core"/>
+            </div>
+            <div class="index_con4_list_left"><img src="{% sass_src 'images/index_con_list1.jpg' %}" alt=".NET Core"/></div>
+            <div class="index_con4_list_right">
+                <div class="index_con4_list_right_div">
+                    <p>行业门户解决方案方案</p>
+                    <span>企业网站的另一个重要的作用就是体现出企业的精神、理念及企业文化现出企业的精神、理现出企业的精神、理现出企业的精神、理现出企业的精神、理现出企业的精神、理...</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="index_con4_list aaabc">
+        <a href="">
+            <div class="index_con4_list_img">
+                <img src="{% sass_src 'images/index_con02.jpg' %}" alt=".NET Core"/>
+            </div>
+            <div class="index_con4_list_left"><img src="{% sass_src 'images/index_con02.jpg' %}" alt=".NET Core"/></div>
+            <div class="index_con4_list_right">
+                <div class="index_con4_list_right_div">
+                    <p>企业网站解决方案</p>
+                    <span>企业网站的另一个重要的作用就是体现出企业的精神、理念及企业文化，这些是企业CIS 理念的组成部分，在网站的建设中应使其得到延伸和渗透...</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="index_con4_list1">
+        <a href="">
+            <div class="index_con4_list_img1">
+                <img src="{% sass_src 'images/index_con_list1.jpg' %}" alt=".NET Core"/>
+            </div>
+            <div class="index_con4_list_left1"><img src="{% sass_src 'images/index_con_list1.jpg' %}" alt=".NET Core"/></div>
+            <div class="index_con4_list_right1">
+                <div class="index_con4_list_right_div1">
+                    <p>行业门户解决111方案</p>
+                    <span>企业网站的另一个重要的作用就是体现出企业的精神、理念及企业文化，这些是企业CIS 理念的组成部分，在网站的建设中应使其得到延伸和渗透。在策划过程中兼顾企业产品营销理念和企业未来的发展规划...</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+
+<footer>
+    <div class="container-xl">
+        <div class="footer_ul">
+            <ul>
+                <li>开始</li>
+                <li><a href="https://www.z01.com/about">关于项目</a></li>
+                <li><a href="https://www.z01.com/Item/1397.aspx">产品理念</a></li>
+                <li><a href="https://www.z01.com/Item/1356.aspx">有何不同</a></li>
+                <li><a href="https://www.z01.com/Item/508.aspx">检索方法</a></li>
+                <li><a href="https://www.z01.com/Item/1350.aspx">区位标准</a></li>
+            </ul>
+            <ul>
+                <li>前瞻研发</li>
+                <li><a href="http://pano.z01.com" target="_blank">VR与AR</a></li>
+                <li><a href="https://www.z01.com/corp/video/1839.shtml" target="_blank">体感研发</a></li>
+                <li><a href="https://www.z01.com/pub/2986.shtml" target="_blank">智能硬件</a></li>
+                <li><a href="https://www.z01.com/pub/2426.shtml" target="_blank">微信开发</a></li>
+                <li><a href="https://www.z01.com/updata/881.shtml" target="_blank">三维全景</a></li>
+                <li><a href="https://www.z01.com/m/" target="_blank">移动开发</a></li>
+            </ul>
+            <ul>
+                <li>开放平台</li>
+                <li><a href="https://www.z01.com/down/3504.shtml" target="_blank">逐浪云管家(FileZilla Server智能助手）</a></li>
+                <li><a href="http://help.z01.com/HelpLabel.aspx" target="_blnak">标签助手</a></li>
+                <li><a href="//ico.z01.com" target="_blnak">zico矢量图标</a></li>
+                <li><a href="http://code.z01.com/v4/" target="_blank">BootStrap中文站</a></li>
+                <li><a href="https://www.z01.com/learn/1246.shtml" target="_blank">云技术白皮书</a></li>
+                <li><a href="https://www.z01.com/Article/news/526.shtml" target="_blank">永久免费声明</a></li>
+                <li><a href="//tool.73ic.com/" target="_blank">站长工具</a></li>
+            </ul>
+            <ul>
+                <li>关于我们</li>
+                <li><a href="https://www.z01.com/y10/" target="_blank">10年华诞</a></li>
+                <li><a href="https://www.z01.com/corp/" target="_blank">关于公司</a></li>
+                <li><a href="https://www.z01.com/photo/ltd/" target="_blank">参观公司</a></li>
+                <li><a href="https://www.z01.com/corp/music" target="_blank">企业歌曲</a></li>
+                <li><a href="https://www.z01.com/corp/video" target="_blank">视频中心</a></li>
+                <li><a href="https://www.z01.com/corp/history/" target="_blank">发展历程</a></li>
+            </ul>
+        </div>
+    </div>    
+<div class="container-xl">
+    <p>7×24小时服务热线 021-50391046 技术支持：<a href="tel:13177777714">13177777714</a></p>
+    <p>Copyright ©2003-2021 逐浪软件z01.com版权所有 All rights reserved</p>
+    <p>经营许可证号:工商3601002021063 <a href="http://beian.miit.gov.cn" target="_blank">沪ICP备09077823号</a> <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011502000316"><img src="/uploadfiles/ga.png" alt="">沪公网安备31011502000316号</a></p>
+    <p>本网站基于&reg;Zoomla!逐浪CMS Python版开发 <a href="admin/login" target="_blank">后台管理</a></p>
+    </div>
+</footer>
+
+
+
+<script>
+    var IO=document.getElementById('inav'),Y=IO,H=0,IE6;
+IE6=window.ActiveXObject&&!window.XMLHttpRequest;
+while(Y){H+=Y.offsetTop;Y=Y.offsetParent};
+if(IE6)
+    IO.style.cssText="position:absolute;top:expression(this.fix?(document"+
+        ".documentElement.scrollTop-(this.javascript||"+H+")):0)";
+window.onscroll=function (){
+    var d=document,s=Math.max(d.documentElement.scrollTop,document.body.scrollTop);
+     if(s>H&&IO.fix||s<=H&&!IO.fix)return;
+    if(!IE6){IO.style.background=IO.fix?"":"rgba(246, 246, 246, 0.9)";IO.style.boxShadow=IO.fix?"":"0px 10px 10px 0px rgba(246, 246, 246, 0.6)";IO.style.transition=IO.fix?"":"all 0.7s"}
+    IO.fix=!IO.fix;
+};
+</script>
+
+{#<img src="{% sass_src 'images/a1.jpg' %}" />#}
+
+{#<script type="text/javascript">#}
+{#document.write("<h1>JS输出：我来自上海逐浪CMS团队，官网：www.z01.com </h1>")#}
+{#</script>#}
+ <script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

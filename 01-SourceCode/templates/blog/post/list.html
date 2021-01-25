@@ -1,0 +1,85 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+{% load sass_tags %}
+{% block title %}我的博客_列表{% endblock %}
+{% block banner %}<p>我的博客</p><span><a href="{% url "blog:post_feed" %}"><i class="zi zi_rss" zico="wifi黑"></i></a></span>{% endblock %}
+{% block content %}
+
+<div class="container-xl">
+{% for post in posts %}
+    <div class="blog_list">
+        <a href="{{ post.get_absolute_url }}" target="_blank">
+            <img src="{% sass_src 'images/index_con01.jpg' %}" alt="{{ post.title }}"/>
+            <div class="blog_list_div">
+                <div class="blog_list_div1">
+                    <h1>{{ post.title }}</h1>
+                    <span><i class="zi zi_clock"></i> {{ post.publish|date:"Y-m-d" }}</span>
+                    <span> 作者：{{ post.author }}</span>
+                    {% for tag in post.tags.all %}<a href="{% url "blog:post_list_by_tag" tag.slug %}" class="blog_list_div1_keyword"><i class="zi zi_tag" zico="标签黑"></i> {{ tag.name }}</a>{% endfor %}
+                </div>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+{% include "pagination.html" with page=posts %}
+</div>
+
+<div class="banner_abvertising"><a href="/"></a></div>
+{#广告banner end#}
+<div class="container-xl">
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="blog_list_con">
+                <p>最近更新</p>
+                {% show_latest_posts 4 %}
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="blog_list_con">
+                <p>最新热帖</p>
+                {% get_most_commented_posts as most_commented_posts %}
+                <ul>
+                    {% for post in most_commented_posts %}
+                    <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-xl blog_img">
+    <img src="{% sass_src 'images/index_con_list1.jpg' %}" />
+</div>
+{% endblock %}
+
+{#{% block content1 %}#}
+{#    {% if tag %}#}
+{#    <h2>Posts tagged with:"{{ tag.name }}"</h2>#}
+{#    {% endif %}#}
+{##}
+{#{% for post in posts %}#}
+{#<h2>#}
+{#<a href="{{ post.get_absolute_url }}">#}
+{#    {{ post.title }}#}
+{#</a>#}
+{#</h2>#}
+{#<p class="tages">关键字标签：#}
+{#    {% for tag in post.tags.all %}#}
+{#        <a href="{% url "blog:post_list_by_tag" tag.slug %}">{{ tag.name }}</a>#}
+{#    {% if not froloop.last %},{% endif %}#}
+{#        {% endfor %}#}
+{#    {{ post.tags.all|join:", " }}#}
+{#</p>#}
+{#    <p class="date">#}
+{#    Published{{ post.publish }} by {{ post.author }}#}
+{#    </p>#}
+{#    <small>Markdown解析:</small>#}
+{#    {{ post.body|markdown|truncatewords:30 }}#}
+{#    <hr>#}
+{#    <small>直接输出:</small>#}
+{#    {{ post.body|truncatewords:30|linebreaks }}#}
+{#{% endfor %}#}
+{#    {% include "pagination.html" with page=posts %}#}
+{#{% endblock %}#}
+
