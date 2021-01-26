@@ -162,7 +162,9 @@ a {
     background: linear-gradient(to top, #F6F6F6, transparent); }
   .index_banner p {
     font-size: 2.5rem;
-    color: #fff; }
+    color: #fff;
+    font-family: Helvetica Neue, PingFang SC, Microsoft Yahei, \\5FAE\8F6F\96C5\9ED1, STXihei, \\534E\6587\7EC6\9ED1, sans-serif;
+    font-weight: 100; }
 
 .index_con {
   margin-top: 1rem;
